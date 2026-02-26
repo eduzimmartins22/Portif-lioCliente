@@ -6,7 +6,7 @@ const services = [
     price: "A partir de R$ 5.000",
     description: "Produção completa de conteúdo para redes sociais",
     color: "bg-emerald-100",
-    featured: true,
+    featured: false,
   },
   {
     id: 2,
@@ -24,7 +24,16 @@ const services = [
     price: "A partir de R$ 8.000",
     description: "Planejamento e execução de campanhas completas",
     color: "bg-gray-100",
-    featured: false,
+    featured: true,
+  },
+   {
+    id: 3,
+    icon: "ri-megaphone-line",
+    name: "Gestão de Campanhas",
+    price: "A partir de R$ 8.000",
+    description: "Planejamento e execução de campanhas completas",
+    color: "bg-gray-100",
+    featured: true,
   },
 ];
 
@@ -56,7 +65,7 @@ export default function Services() {
               key={service.id}
               className={`relative rounded-3xl p-10 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
                 service.featured
-                  ? "bg-emerald-500 text-white shadow-xl scale-105"
+                  ? "bg-emerald-400 text-white shadow-xl scale-105"
                   : "bg-gray-50 text-gray-900"
               }`}
             >
@@ -71,13 +80,13 @@ export default function Services() {
               <div
                 className={`w-16 h-16 flex items-center justify-center rounded-2xl mb-6 ${
                   service.featured
-                    ? "bg-white/20"
+                    ? "bg-white/40"
                     : service.color
                 }`}
               >
                 <i
                   className={`${service.icon} text-2xl ${
-                    service.featured ? "text-white" : "text-gray-800"
+                    service.featured ? "text-white" : "text-gray-900"
                   }`}
                 ></i>
               </div>
@@ -104,7 +113,7 @@ export default function Services() {
                 onClick={scrollToContact}
                 className={`w-full py-3 rounded-full font-medium transition-all duration-300 ${
                   service.featured
-                    ? "bg-white text-emerald-600 hover:bg-gray-100"
+                    ? "bg-white text-emerald-600 hover:bg-gray-200"
                     : "bg-gray-900 text-white hover:bg-gray-800"
                 }`}
               >

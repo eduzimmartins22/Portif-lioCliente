@@ -1,3 +1,4 @@
+import Ela from "../../../assets/ela.png";
 import { useState } from "react";
 
 const testimonials = [
@@ -13,11 +14,11 @@ const testimonials = [
   {
     id: 2,
     quote:
-      "A consultoria digital que recebemos foi excepcional. As estratégias implementadas aumentaram nossa presença online em 300% em apenas três meses. Recomendo fortemente para qualquer empresa que busca crescimento real.",
-    author: "Carlos Mendes",
-    role: "CEO, Tech Startup",
+      "Cada imagem, cada legenda e cada estratégia são pensadas para ir além do alcance: o objetivo é criar impacto, gerar reconhecimento e transformar seguidores em uma comunidade engajada.",
+    author: "Yhasmin Fagundes",
+    role: "Social Media Manager, Tech Startup",
     image:
-      "https://readdy.ai/api/search-image?query=confident male business executive in modern casual professional attire smiling warmly against soft pastel emerald background in contemporary office environment with natural lighting perfect for client testimonial portrait showcasing trust and satisfaction&width=600&height=750&seq=testimonial-02&orientation=portrait",
+      Ela
   },
   {
     id: 3,

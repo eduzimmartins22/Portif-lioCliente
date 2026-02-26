@@ -21,23 +21,45 @@ export function CTA() {
           Iniciar Projeto
           <i className="ri-arrow-right-line text-xl"></i>
         </button>
-        <div className="flex items-center justify-center gap-8 mt-20">
-          <div className="w-16 h-16 flex items-center justify-center">
-            <i className="ri-instagram-line text-4xl text-gray-400"></i>
-          </div>
-          <div className="w-16 h-16 flex items-center justify-center">
-            <i className="ri-youtube-line text-4xl text-gray-400"></i>
-          </div>
-          <div className="w-16 h-16 flex items-center justify-center">
-            <i className="ri-tiktok-line text-4xl text-gray-400"></i>
-          </div>
-          <div className="w-16 h-16 flex items-center justify-center">
-            <i className="ri-linkedin-box-line text-4xl text-gray-400"></i>
-          </div>
-          <div className="w-16 h-16 flex items-center justify-center">
-            <i className="ri-twitter-x-line text-4xl text-gray-400"></i>
-          </div>
-        </div>
+<div className="flex items-center justify-center gap-10 mt-20">
+
+  <a
+    href="https://instagram.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-gray-400 hover:text-black transition duration-300"
+  >
+    <i className="ri-instagram-line text-3xl"></i>
+  </a>
+
+  <a
+    href="https://youtube.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-gray-400 hover:text-black transition duration-300"
+  >
+    <i className="ri-youtube-line text-3xl"></i>
+  </a>
+
+  <a
+    href="https://tiktok.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-gray-400 hover:text-black transition duration-300"
+  >
+    <i className="ri-tiktok-line text-3xl"></i>
+  </a>
+
+  <a
+    href="https://linkedin.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-gray-400 hover:text-black transition duration-300"
+  >
+    <i className="ri-linkedin-box-line text-3xl"></i>
+  </a>
+
+</div>
       </div>
     </section>
   );

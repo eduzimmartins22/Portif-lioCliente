@@ -1,13 +1,23 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Ela from "../../../assets/ela.png";
 
-const projects = [
+type Project = {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  image: string;
+};
+
+const projects: Project[] = [
   {
     id: 1,
-    title: "Campanha Verão 2024",
-    description: "Campanha completa para marca de moda com 5M+ de alcance",
-    category: "Moda & Lifestyle",
-    image:
-      "https://readdy.ai/api/search-image?query=vibrant summer fashion campaign photoshoot with bright colorful clothing against minimalist clean white background featuring modern trendy outfits and accessories with professional studio lighting and contemporary aesthetic perfect for social media content and digital marketing materials&width=800&height=1000&seq=portfolio-01&orientation=portrait",
+    title: "Breno & Yhasmin - Casamento",
+    description:
+      "Fiz um Casamento, gravando e deixando as melhores postagens para nunca esquecer em seu instagram e demais redes sociais",
+    category: "Casamento",
+    image: Ela,
   },
   {
     id: 2,
@@ -26,39 +36,16 @@ const projects = [
     image:
       "https://readdy.ai/api/search-image?query=dynamic fitness lifestyle photography featuring athletic wear and wellness products in bright modern gym environment with clean minimalist aesthetic and natural lighting showcasing healthy active lifestyle perfect for fitness brand collaboration and social media content&width=800&height=1000&seq=portfolio-03&orientation=portrait",
   },
-  {
-    id: 4,
-    title: "Campanha Sustentável",
-    description:
-      "Projeto de conscientização ambiental com impacto social",
-    category: "Sustentabilidade",
-    image:
-      "https://readdy.ai/api/search-image?query=eco-friendly sustainable lifestyle products and natural elements arranged beautifully on clean white surface with soft natural lighting featuring green plants organic materials and earth-friendly items perfect for environmental awareness campaign and conscious living content&width=800&height=1000&seq=portfolio-04&orientation=portrait",
-  },
-  {
-    id: 5,
-    title: "Food Content Series",
-    description: "Série gastronômica com restaurantes premium",
-    category: "Gastronomia",
-    image:
-      "https://readdy.ai/api/search-image?query=elegant gourmet food photography featuring beautifully plated dishes on minimalist white background with professional lighting and artistic presentation showcasing premium restaurant cuisine perfect for culinary content and food influencer social media posts&width=800&height=1000&seq=portfolio-05&orientation=portrait",
-  },
-  {
-    id: 6,
-    title: "Travel Diaries",
-    description: "Documentário de viagens por destinos exclusivos",
-    category: "Viagens",
-    image:
-      "https://readdy.ai/api/search-image?query=stunning travel destination landscape with pristine beaches turquoise waters and tropical paradise scenery featuring luxury resort elements and exotic locations perfect for travel content and wanderlust inspiring social media posts with bright vibrant colors&width=800&height=1000&seq=portfolio-06&orientation=portrait",
-  },
 ];
 
 export default function Portfolio() {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   return (
     <section id="portfolio" className="py-32 px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
+        
         {/* Título */}
         <div className="mb-16">
           <h2 className="text-6xl font-extralight text-gray-900 mb-4 max-w-md">
@@ -74,10 +61,11 @@ export default function Portfolio() {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-105"
-              style={{ aspectRatio: "3/4" }}
+              onClick={() => navigate(`/projeto/${project.id}`)}
               onMouseEnter={() => setHoveredId(project.id)}
               onMouseLeave={() => setHoveredId(null)}
+              className="group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-105"
+              style={{ aspectRatio: "3/4" }}
             >
               {/* Imagem */}
               <img
@@ -86,7 +74,7 @@ export default function Portfolio() {
                 className="w-full h-full object-cover"
               />
 
-              {/* Overlay escuro */}
+              {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               {/* Conteúdo */}
@@ -112,6 +100,7 @@ export default function Portfolio() {
                   </p>
                 </div>
               </div>
+
             </div>
           ))}
         </div>

@@ -18,12 +18,11 @@ export function Hero() {
 
       <div className="relative z-10 text-center max-w-5xl mx-auto w-full">
         <h1 className="text-7xl md:text-8xl font-bold text-white mb-6 leading-tight">
-          Transformando Ideias em<br />Conteúdo Viral
+          Transformando Ideias em <br/> Conteúdo Viral
         </h1>
-
-        <p className="text-xl text-white/90 font-light mb-12 max-w-2xl mx-auto">
-          Criando conexões autênticas entre marcas e audiências
-        </p>
+        <h1 className="text-1xl md:text-2xl text-gray-200 mb-15 leading-tight">
+          Estratégias de conteúdo que impulsionam seu negócio
+        </h1>
 
         <button
           onClick={scrollToContact}
