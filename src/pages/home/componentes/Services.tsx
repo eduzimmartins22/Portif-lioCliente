@@ -1,126 +1,198 @@
+import { useEffect, useRef } from "react";
+
+function useReveal(ref: React.RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting)
+          entry.target.querySelectorAll(".reveal,.reveal-left,.reveal-right")
+            .forEach((el, i) => setTimeout(() => el.classList.add("visible"), i * 90));
+      });
+    }, { threshold: 0.08 });
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+}
+
 const services = [
   {
-    id: 1,
-    icon: "ri-video-line",
-    name: "Criação de Conteúdo",
-    price: "A partir de R$ 5.000",
-    description: "Produção completa de conteúdo para redes sociais",
-    color: "bg-emerald-100",
-    featured: false,
+    icon: "ri-quill-pen-line", name: "Criação de Conteúdo",
+    price: "A partir de R$ 5.000", featured: false,
+    description: "Produção completa de conteúdo para redes sociais com estratégia, criatividade e consistência. Do briefing à publicação, cuido de tudo.",
+    tags: ["Instagram", "TikTok", "YouTube"],
   },
   {
-    id: 2,
-    icon: "ri-lightbulb-line",
-    name: "Consultoria Digital",
-    price: "A partir de R$ 3.000",
-    description: "Estratégias personalizadas para crescimento digital",
-    color: "bg-gray-100",
-    featured: false,
+    icon: "ri-lightbulb-flash-line", name: "Consultoria Digital",
+    price: "A partir de R$ 3.000", featured: true,
+    description: "Estratégias personalizadas para crescimento digital e posicionamento de marca. Análise profunda do seu negócio e plano de ação.",
+    tags: ["Estratégia", "Branding", "Growth"],
   },
   {
-    id: 3,
-    icon: "ri-megaphone-line",
-    name: "Gestão de Campanhas",
-    price: "A partir de R$ 8.000",
-    description: "Planejamento e execução de campanhas completas",
-    color: "bg-gray-100",
-    featured: true,
-  },
-   {
-    id: 3,
-    icon: "ri-megaphone-line",
-    name: "Gestão de Campanhas",
-    price: "A partir de R$ 8.000",
-    description: "Planejamento e execução de campanhas completas",
-    color: "bg-gray-100",
-    featured: true,
+    icon: "ri-megaphone-line", name: "Gestão de Campanhas",
+    price: "A partir de R$ 8.000", featured: false,
+    description: "Planejamento e execução de campanhas completas. Meta Ads, Google Ads e conteúdo orgânico integrados para máximo resultado.",
+    tags: ["Meta Ads", "Google", "Performance"],
   },
 ];
 
 export default function Services() {
-  const scrollToContact = () => {
-    const element = document.getElementById("contato");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const ref = useRef<HTMLElement>(null);
+  useReveal(ref);
+  const go = () => document.getElementById("contato")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <section id="servicos" className="py-32 px-8 bg-white">
-      <div className="max-w-7xl mx-auto">
-        {/* Título */}
-        <div className="mb-16 max-w-xl">
-          <h2 className="text-6xl font-extralight text-gray-900 mb-4">
-            Serviços
-          </h2>
-          <p className="text-gray-600 text-base">
-            Soluções estratégicas para impulsionar sua presença digital.
+    <section ref={ref} id="servicos" style={{ padding: "96px 0", background: "#0d0d0d" }}>
+      <div className="section-inner">
+        <div className="divider" style={{ marginBottom: 48 }} />
+
+        <div style={{
+          display: "flex", flexWrap: "wrap",
+          justifyContent: "space-between", alignItems: "flex-end",
+          gap: 24, marginBottom: 56,
+        }}>
+          <div>
+            <div className="reveal" style={{ marginBottom: 20 }}>
+              <span className="tag-badge">
+                <span className="dot-pulse" style={{ width: 7, height: 7, borderRadius: "50%", background: "#00e87a", display: "inline-block" }} />
+                O que ofereço
+              </span>
+            </div>
+            <h2 className="reveal" style={{
+              fontFamily: "Syne, sans-serif", fontWeight: 900,
+              fontSize: "clamp(2rem, 5vw, 3.8rem)",
+              lineHeight: 1.05, letterSpacing: "-0.02em", color: "#fff",
+            }}>
+              Soluções feitas<br />
+              <span style={{ color: "#333" }}>sob medida</span>
+            </h2>
+          </div>
+          <p className="reveal" style={{
+            color: "#555", fontSize: "0.875rem", maxWidth: 280, lineHeight: 1.7,
+          }}>
+            Cada projeto é único. Trabalho com você para entender seus objetivos e criar uma estratégia que realmente funciona.
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className={`relative rounded-3xl p-10 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
-                service.featured
-                  ? "bg-emerald-400 text-white shadow-xl scale-105"
-                  : "bg-gray-50 text-gray-900"
-              }`}
+        <div className="three-col">
+          {services.map((s, i) => (
+            <div key={i} className="reveal" style={{
+              borderRadius: 20, padding: "32px",
+              background: s.featured ? "#00e87a" : "#111",
+              border: s.featured ? "none" : "1px solid rgba(255,255,255,0.06)",
+              display: "flex", flexDirection: "column",
+              transition: "transform 0.3s, box-shadow 0.3s",
+              position: "relative",
+              animationDelay: `${i * 80}ms`,
+            }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)";
+                (e.currentTarget as HTMLDivElement).style.boxShadow = s.featured
+                  ? "0 20px 60px rgba(0,232,122,0.2)"
+                  : "0 20px 60px rgba(0,0,0,0.4)";
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLDivElement).style.transform = "none";
+                (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+              }}
             >
-              {/* Badge destaque */}
-              {service.featured && (
-                <span className="absolute top-6 right-6 text-xs uppercase tracking-wider bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">
-                  Mais Procurado
-                </span>
+              {s.featured && (
+                <div style={{
+                  position: "absolute", top: 20, right: 20,
+                  background: "rgba(0,0,0,0.15)", color: "#000",
+                  fontSize: "0.65rem", fontWeight: 700,
+                  padding: "4px 12px", borderRadius: 999,
+                  textTransform: "uppercase", letterSpacing: "0.08em",
+                }}>Mais popular</div>
               )}
 
-              {/* Ícone */}
-              <div
-                className={`w-16 h-16 flex items-center justify-center rounded-2xl mb-6 ${
-                  service.featured
-                    ? "bg-white/40"
-                    : service.color
-                }`}
-              >
-                <i
-                  className={`${service.icon} text-2xl ${
-                    service.featured ? "text-white" : "text-gray-900"
-                  }`}
-                ></i>
+              {/* Icon */}
+              <div style={{
+                width: 48, height: 48, borderRadius: 14,
+                background: s.featured ? "rgba(0,0,0,0.12)" : "rgba(255,255,255,0.05)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                marginBottom: 24,
+              }}>
+                <i className={s.icon} style={{
+                  fontSize: "1.3rem",
+                  color: s.featured ? "#000" : "#00e87a",
+                }} />
               </div>
 
-              {/* Conteúdo */}
-              <h3 className="text-2xl font-semibold mb-3">
-                {service.name}
-              </h3>
+              <h3 style={{
+                fontFamily: "Syne, sans-serif", fontWeight: 900,
+                fontSize: "1.3rem", color: s.featured ? "#000" : "#fff",
+                marginBottom: 12,
+              }}>{s.name}</h3>
 
-              <p
-                className={`text-sm mb-6 ${
-                  service.featured ? "text-white/90" : "text-gray-600"
-                }`}
-              >
-                {service.description}
-              </p>
+              <p style={{
+                fontSize: "0.875rem", lineHeight: 1.7,
+                color: s.featured ? "rgba(0,0,0,0.65)" : "#666",
+                flex: 1, marginBottom: 20,
+              }}>{s.description}</p>
 
-              <p className="text-lg font-medium mb-8">
-                {service.price}
-              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 20 }}>
+                {s.tags.map(t => (
+                  <span key={t} style={{
+                    fontSize: "0.7rem", padding: "3px 10px", borderRadius: 999,
+                    background: s.featured ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.06)",
+                    color: s.featured ? "rgba(0,0,0,0.6)" : "#777",
+                  }}>{t}</span>
+                ))}
+              </div>
 
-              {/* Botão */}
-              <button
-                onClick={scrollToContact}
-                className={`w-full py-3 rounded-full font-medium transition-all duration-300 ${
-                  service.featured
-                    ? "bg-white text-emerald-600 hover:bg-gray-200"
-                    : "bg-gray-900 text-white hover:bg-gray-800"
-                }`}
-              >
-                Solicitar Orçamento
-              </button>
+              <div style={{
+                fontSize: "0.85rem", fontWeight: 600,
+                color: s.featured ? "#000" : "#777",
+                marginBottom: 20,
+              }}>{s.price}</div>
+
+              <button onClick={go} style={{
+                width: "100%", padding: "13px",
+                borderRadius: 999, fontWeight: 700,
+                fontSize: "0.82rem", transition: "all 0.25s",
+                background: s.featured ? "#000" : "rgba(255,255,255,0.06)",
+                color: s.featured ? "#00e87a" : "#fff",
+                border: s.featured ? "none" : "1px solid rgba(255,255,255,0.1)",
+                cursor: "pointer",
+              }}
+                onMouseEnter={e => {
+                  if (!s.featured) {
+                    (e.currentTarget as HTMLButtonElement).style.background = "#00e87a";
+                    (e.currentTarget as HTMLButtonElement).style.color = "#000";
+                    (e.currentTarget as HTMLButtonElement).style.borderColor = "transparent";
+                  }
+                }}
+                onMouseLeave={e => {
+                  if (!s.featured) {
+                    (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.06)";
+                    (e.currentTarget as HTMLButtonElement).style.color = "#fff";
+                    (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.1)";
+                  }
+                }}
+              >Solicitar orçamento</button>
             </div>
           ))}
+        </div>
+
+        {/* Bottom bar */}
+        <div className="reveal" style={{
+          marginTop: 24, display: "flex", flexWrap: "wrap",
+          alignItems: "center", justifyContent: "space-between",
+          gap: 20, padding: "28px 32px",
+          background: "#111", borderRadius: 18,
+          border: "1px solid rgba(255,255,255,0.06)",
+        }}>
+          <div>
+            <p style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, color: "#fff", fontSize: "1rem" }}>
+              Não encontrou o que precisa?
+            </p>
+            <p style={{ color: "#555", fontSize: "0.82rem", marginTop: 4 }}>
+              Vamos criar um pacote personalizado para você.
+            </p>
+          </div>
+          <button onClick={go} className="btn-primary" style={{ padding: "11px 24px" }}>
+            Falar agora <i className="ri-arrow-right-line" />
+          </button>
         </div>
       </div>
     </section>
