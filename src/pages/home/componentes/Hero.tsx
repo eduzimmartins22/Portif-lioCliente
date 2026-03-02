@@ -69,25 +69,13 @@ export function Hero() {
           letterSpacing: "-0.03em", color: "#fff",
           marginBottom: 24,
         }}>
-          Transformando<br />
+          Transformar<br />
           Ideias em{" "}
           <span className="gradient-text">Conteúdo</span>
           <br />que Conecta
         </h1>
 
-        {/* Sub */}
-        <p className="fade-in-up d3" style={{
-          fontSize: "clamp(0.95rem, 2vw, 1.1rem)",
-          color: "#888", maxWidth: 520, margin: "0 auto 36px",
-          lineHeight: 1.7,
-        }}>
-          Estratégias de conteúdo autênticas e personalizadas que impulsionam
-          marcas no digital.{" "}
-          <strong style={{ color: "#ccc", fontWeight: 500 }}>
-            Há mais de 3 anos
-          </strong>{" "}
-          criando resultados reais.
-        </p>
+      
 
         {/* CTAs */}
         <div className="fade-in-up d4" style={{
@@ -112,7 +100,7 @@ export function Hero() {
         }}>
           {[
             { v: "500K+", l: "Seguidores" },
-            { v: "3Bi+", l: "Visualizações" },
+            { v: "3Mi+", l: "Visualizações" },
             { v: "200+", l: "Marcas" },
           ].map((s, i) => (
             <div key={i} style={{ textAlign: "center" }}>
@@ -132,19 +120,7 @@ export function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="fade-in-up d6" style={{
-        position: "absolute", bottom: 36, left: "50%",
-        transform: "translateX(-50%)",
-        display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
-      }}>
-        <span style={{ fontSize: "0.6rem", color: "#444", letterSpacing: "0.2em", textTransform: "uppercase" }}>
-          scroll
-        </span>
-        <div style={{
-          width: 1, height: 40,
-          background: "linear-gradient(to bottom, rgba(0,232,122,0.5), transparent)",
-        }} />
-      </div>
+ 
     </section>
   );
 }

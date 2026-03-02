@@ -21,7 +21,8 @@ export function About() {
   useReveal(ref);
 
   const socials = [
-    { icon: "ri-instagram-line", href: "https://instagram.com/" },
+    { icon: "ri-instagram-line", href: "https://instagram.com/yhasmin_fagundes" },
+    { icon: "ri-linkedin-line", href: "https://linkedin.com/in/yhasmin-fagundes" },
     { icon: "ri-youtube-line", href: "https://youtube.com/" },
     { icon: "ri-tiktok-line", href: "https://tiktok.com/" },
   ];

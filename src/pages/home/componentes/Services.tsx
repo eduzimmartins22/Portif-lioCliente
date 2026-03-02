@@ -17,19 +17,19 @@ function useReveal(ref: React.RefObject<HTMLElement | null>) {
 const services = [
   {
     icon: "ri-quill-pen-line", name: "Criação de Conteúdo",
-    price: "A partir de R$ 5.000", featured: false,
+     featured: false,
     description: "Produção completa de conteúdo para redes sociais com estratégia, criatividade e consistência. Do briefing à publicação, cuido de tudo.",
     tags: ["Instagram", "TikTok", "YouTube"],
   },
   {
     icon: "ri-lightbulb-flash-line", name: "Consultoria Digital",
-    price: "A partir de R$ 3.000", featured: true,
+    featured: true,
     description: "Estratégias personalizadas para crescimento digital e posicionamento de marca. Análise profunda do seu negócio e plano de ação.",
     tags: ["Estratégia", "Branding", "Growth"],
   },
   {
     icon: "ri-megaphone-line", name: "Gestão de Campanhas",
-    price: "A partir de R$ 8.000", featured: false,
+    featured: false,
     description: "Planejamento e execução de campanhas completas. Meta Ads, Google Ads e conteúdo orgânico integrados para máximo resultado.",
     tags: ["Meta Ads", "Google", "Performance"],
   },
