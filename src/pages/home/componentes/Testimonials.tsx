@@ -1,4 +1,3 @@
-import Ela from "../../../assets/ela.png";
 import { useState, useEffect, useRef } from "react";
 
 function useReveal(ref: React.RefObject<HTMLElement | null>) {
@@ -17,19 +16,19 @@ function useReveal(ref: React.RefObject<HTMLElement | null>) {
 
 const testimonials = [
   {
-    id: 1, author: "Maria Silva", role: "Diretora de Marketing", company: "Fashion Brand",
-    image: "https://readdy.ai/api/search-image?query=professional business woman executive smiling confidently pastel background modern office&width=600&height=750&seq=testimonial-01&orientation=portrait",
-    quote: "Trabalhar com a Yhasmin foi transformador para nossa marca. O conteúdo criado superou todas as expectativas e gerou um engajamento incrível com nosso público. Profissionalismo e criatividade em cada detalhe.",
+    id: 1, author: "Carlos Mendes", role: "CEO", company: "Loja Urbana",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80",
+    quote: "Trabalhar com a Buzz Digital foi transformador para nossa marca. O posicionamento estrategico e o conteudo criado superaram todas as expectativas e geraram engajamento incrivel.",
   },
   {
-    id: 2, author: "Yhasmin Fagundes", role: "Social Media Manager", company: "Tech Startup",
-    image: Ela,
-    quote: "Cada imagem, cada legenda e cada estratégia são pensadas para ir além do alcance: o objetivo é criar impacto, gerar reconhecimento e transformar seguidores em uma comunidade engajada.",
+    id: 2, author: "Fernanda Costa", role: "Diretora de Marketing", company: "Tech Solutions",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80",
+    quote: "A equipe da Buzz entende de verdade o negocio antes de criar qualquer conteudo. Cada estrategia e pensada para gerar resultado real, nao apenas likes.",
   },
   {
-    id: 3, author: "Ana Costa", role: "Gerente de Comunicação", company: "Wellness Co.",
-    image: "https://readdy.ai/api/search-image?query=professional businesswoman friendly smile business casual contemporary bright modern office&width=600&height=750&seq=testimonial-03&orientation=portrait",
-    quote: "Parceria incrível! O conteúdo produzido foi autêntico e alinhado perfeitamente com os valores da nossa marca. Os resultados foram além do esperado, com milhões de visualizações e ROI impressionante.",
+    id: 3, author: "Rafael Oliveira", role: "Fundador", company: "Startup BR",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80",
+    quote: "Desde que comeamos a trabalhar com a Buzz, nossa presenca digital mudou completamente. Mais autoridade, mais leads e mais vendas. Resultado que fala por si.",
   },
 ];
 
@@ -48,121 +47,99 @@ export default function Testimonials() {
   const cur = testimonials[idx];
 
   return (
-    <section ref={ref} id="depoimentos" style={{ padding: "96px 0", background: "#0d0d0d" }}>
+    <section ref={ref} id="depoimentos" style={{ padding: "72px 0", background: "#0d0d0d" }}>
       <div className="section-inner">
-        <div className="divider" style={{ marginBottom: 48 }} />
+        <div className="divider" style={{ marginBottom: 40 }} />
 
-        <div className="reveal" style={{ marginBottom: 32 }}>
+        <div className="reveal" style={{ marginBottom: 28 }}>
           <span className="tag-badge">
-            <span className="dot-pulse" style={{ width: 7, height: 7, borderRadius: "50%", background: "#00e87a", display: "inline-block" }} />
+            <span className="dot-pulse" style={{ width: 6, height: 6, borderRadius: "50%", background: "#00e87a", display: "inline-block" }} />
             Depoimentos
           </span>
         </div>
 
         <div className="two-col">
-          {/* Image */}
           <div className="reveal-left" style={{ position: "relative" }}>
             <div style={{
-              borderRadius: 20, overflow: "hidden",
+              borderRadius: 16, overflow: "hidden",
               aspectRatio: "4/5", position: "relative",
               opacity: anim ? 0 : 1, transition: "opacity 0.28s",
             }}>
-              <img src={cur.image} alt={cur.author} style={{
-                width: "100%", height: "100%", objectFit: "cover",
-              }} />
-              <div style={{
-                position: "absolute", inset: 0,
-                background: "linear-gradient(to top, rgba(8,8,8,0.45) 0%, transparent 60%)",
-              }} />
+              <img src={cur.image} alt={cur.author} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(8,8,8,0.45) 0%, transparent 60%)" }} />
             </div>
-            {/* Company badge */}
             <div style={{
-              position: "absolute", top: 18, left: 18,
+              position: "absolute", top: 16, left: 16,
               background: "rgba(8,8,8,0.8)", backdropFilter: "blur(16px)",
               border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: 14, padding: "12px 18px",
+              borderRadius: 12, padding: "10px 14px",
               opacity: anim ? 0 : 1, transition: "opacity 0.28s",
             }}>
-              <div style={{ color: "#00e87a", fontSize: "0.65rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+              <div style={{ color: "#00e87a", fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em" }}>
                 {cur.company}
               </div>
-              <div style={{ color: "#fff", fontSize: "0.82rem", fontWeight: 500, marginTop: 2 }}>{cur.role}</div>
+              <div style={{ color: "#fff", fontSize: "0.78rem", fontWeight: 500, marginTop: 2 }}>{cur.role}</div>
             </div>
           </div>
 
-          {/* Content */}
           <div>
             <h2 className="reveal" style={{
               fontFamily: "Syne, sans-serif", fontWeight: 900,
-              fontSize: "clamp(1.8rem, 4vw, 3.2rem)",
+              fontSize: "clamp(1.5rem, 3vw, 2.4rem)",
               lineHeight: 1.1, letterSpacing: "-0.02em",
-              color: "#fff", marginBottom: 40,
+              color: "#fff", marginBottom: 32,
             }}>
               O que dizem<br />
-              <span style={{ color: "#333" }}>sobre meu trabalho</span>
+              <span style={{ color: "#333" }}>sobre nosso trabalho</span>
             </h2>
 
             <div style={{ opacity: anim ? 0 : 1, transition: "opacity 0.28s" }}>
-              <div style={{
-                fontFamily: "Syne, sans-serif", fontSize: "5rem",
-                color: "#00e87a", lineHeight: 0.8, marginBottom: 20,
-              }}>"</div>
-              <p style={{
-                color: "#aaa", fontSize: "clamp(0.9rem, 1.6vw, 1.05rem)",
-                lineHeight: 1.75, marginBottom: 28,
-              }}>{cur.quote}</p>
+              <div style={{ fontFamily: "Syne, sans-serif", fontSize: "3.5rem", color: "#00e87a", lineHeight: 0.8, marginBottom: 16 }}>"</div>
+              <p style={{ color: "#888", fontSize: "0.9rem", lineHeight: 1.8, marginBottom: 24 }}>{cur.quote}</p>
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <div style={{ width: 3, height: 44, background: "#00e87a", borderRadius: 2 }} />
+                <div style={{ width: 3, height: 36, background: "#00e87a", borderRadius: 2 }} />
                 <div>
-                  <div style={{ fontFamily: "Syne, sans-serif", fontWeight: 800, color: "#fff", fontSize: "0.95rem" }}>
+                  <div style={{ fontFamily: "Syne, sans-serif", fontWeight: 800, color: "#fff", fontSize: "0.88rem" }}>
                     {cur.author}
                   </div>
-                  <div style={{ color: "#555", fontSize: "0.78rem", marginTop: 2 }}>
+                  <div style={{ color: "#444", fontSize: "0.72rem", marginTop: 2 }}>
                     {cur.role} · {cur.company}
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Controls */}
-            <div className="reveal" style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 40 }}>
+            <div className="reveal" style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 32 }}>
               <button onClick={() => goTo(idx === 0 ? testimonials.length - 1 : idx - 1)}
                 style={{
-                  width: 48, height: 48, borderRadius: "50%",
+                  width: 42, height: 42, borderRadius: "50%",
                   border: "1px solid rgba(255,255,255,0.1)",
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  color: "#888", fontSize: "1.2rem", cursor: "pointer",
+                  color: "#777", fontSize: "1rem", cursor: "pointer",
                   background: "transparent", transition: "all 0.25s",
                 }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.25)";
-                  (e.currentTarget as HTMLButtonElement).style.color = "#fff";
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.1)";
-                  (e.currentTarget as HTMLButtonElement).style.color = "#888";
-                }}>
+                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.25)"; (e.currentTarget as HTMLButtonElement).style.color = "#fff"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.1)"; (e.currentTarget as HTMLButtonElement).style.color = "#777"; }}>
                 <i className="ri-arrow-left-line" />
               </button>
               <button onClick={() => goTo(idx === testimonials.length - 1 ? 0 : idx + 1)}
                 style={{
-                  width: 48, height: 48, borderRadius: "50%",
+                  width: 42, height: 42, borderRadius: "50%",
                   background: "#00e87a", border: "none",
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  color: "#000", fontSize: "1.2rem", cursor: "pointer",
+                  color: "#000", fontSize: "1rem", cursor: "pointer",
                   transition: "background 0.25s",
                 }}
                 onMouseEnter={e => (e.currentTarget as HTMLButtonElement).style.background = "#00ff88"}
                 onMouseLeave={e => (e.currentTarget as HTMLButtonElement).style.background = "#00e87a"}>
                 <i className="ri-arrow-right-line" />
               </button>
-              {/* Dots */}
-              <div style={{ display: "flex", gap: 8, marginLeft: 8 }}>
+              <div style={{ display: "flex", gap: 6, marginLeft: 6 }}>
                 {testimonials.map((_, i) => (
                   <button key={i} onClick={() => goTo(i)} style={{
                     borderRadius: 999, border: "none", cursor: "pointer",
-                    width: i === idx ? 24 : 8, height: 8,
-                    background: i === idx ? "#00e87a" : "rgba(255,255,255,0.15)",
+                    width: i === idx ? 20 : 7, height: 7,
+                    background: i === idx ? "#00e87a" : "rgba(255,255,255,0.12)",
                     transition: "all 0.3s",
                   }} />
                 ))}

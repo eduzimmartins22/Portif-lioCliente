@@ -15,10 +15,10 @@ function useReveal(ref: React.RefObject<HTMLElement | null>) {
 }
 
 const items = [
-  "Conteúdo", "Design", "Estratégia", "Reels", "Copywriting",
-  "Performance", "Branding", "Growth", "Audiovisual", "Campanhas",
-  "Conteúdo", "Design", "Estratégia", "Reels", "Copywriting",
-  "Performance", "Branding", "Growth", "Audiovisual", "Campanhas",
+  "Conteudo", "Audiovisual", "Estrategia", "Reels", "Copywriting",
+  "Performance", "Branding", "Growth", "Stories", "Campanhas",
+  "Conteudo", "Audiovisual", "Estrategia", "Reels", "Copywriting",
+  "Performance", "Branding", "Growth", "Stories", "Campanhas",
 ];
 
 export function CTA() {
@@ -28,7 +28,6 @@ export function CTA() {
 
   return (
     <section ref={ref} style={{ background: "#080808", overflow: "hidden" }}>
-      {/* Marquee top */}
       <div className="marquee-wrap" style={{ borderTop: "1px solid rgba(255,255,255,0.06)", borderBottom: "1px solid rgba(255,255,255,0.06)", padding: "14px 0" }}>
         <div className="marquee-track">
           {items.map((item, i) => (
@@ -40,7 +39,6 @@ export function CTA() {
         </div>
       </div>
 
-      {/* Main */}
       <div style={{ padding: "96px 0" }}>
         <div className="section-inner" style={{ textAlign: "center" }}>
           <div className="reveal" style={{ marginBottom: 24 }}>
@@ -56,25 +54,24 @@ export function CTA() {
             lineHeight: 0.96, letterSpacing: "-0.03em",
             color: "#fff", marginBottom: 24,
           }}>
-            Sua história<br />merece ser{" "}
-            <span className="gradient-text">bem contada.</span>
+            Sua marca merece<br />estar no{" "}
+            <span className="gradient-text">proximo nivel.</span>
           </h2>
 
           <p className="reveal" style={{
             color: "#555", fontSize: "clamp(0.9rem, 1.5vw, 1.05rem)",
             maxWidth: 480, margin: "0 auto 36px", lineHeight: 1.7,
           }}>
-            E a gente sabe como fazer isso. Vamos transformar sua visão em conteúdo que conecta, engaja e gera resultado.
+            Transformamos redes sociais em ferramentas reais de posicionamento, autoridade e geracao de oportunidades.
           </p>
 
           <div className="reveal">
             <button onClick={go} className="btn-primary" style={{ fontSize: "0.95rem", padding: "16px 36px" }}>
-              Quero mais informações
+              Quero mais informacoes
               <i className="ri-arrow-right-line" />
             </button>
           </div>
 
-          {/* Social proof */}
           <div className="reveal" style={{
             display: "flex", flexWrap: "wrap",
             justifyContent: "center", gap: "12px 32px",
@@ -82,8 +79,8 @@ export function CTA() {
           }}>
             {[
               "Mais de 200 marcas atendidas",
-              "3 bilhões de visualizações",
-              "500K+ seguidores orgânicos",
+              "3 milhoes de visualizacoes",
+              "Equipe 100% in house",
             ].map(t => (
               <div key={t} style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <i className="ri-check-line" style={{ color: "#00e87a" }} />
@@ -94,7 +91,6 @@ export function CTA() {
         </div>
       </div>
 
-      {/* Marquee bottom */}
       <div className="marquee-wrap" style={{ borderTop: "1px solid rgba(255,255,255,0.06)", borderBottom: "1px solid rgba(255,255,255,0.06)", padding: "14px 0" }}>
         <div className="marquee-track-rev">
           {[...items].reverse().map((item, i) => (

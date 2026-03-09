@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import Ela from "../../../assets/ela.png";
 
 function useReveal(ref: React.RefObject<HTMLElement | null>) {
   useEffect(() => {
@@ -18,24 +17,46 @@ function useReveal(ref: React.RefObject<HTMLElement | null>) {
 
 const projects = [
   {
-    id: 1, category: "Casamento", image: Ela,
-    title: "Breno & Yhasmin — Casamento",
-    description: "Captei e curei os melhores momentos do casamento, criando posts e stories que eternizaram o dia especial nas redes sociais.",
-    tags: ["Instagram", "Stories", "Reels"],
+    id: 1, category: "Conteudo Estrategico",
+    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&q=80",
+    title: "Gestao de Redes Sociais",
+    description: "Estrategia completa de conteudo para marca de moda com crescimento de 300% em engajamento.",
+    tags: ["Instagram", "TikTok", "Reels"],
   },
   {
-    id: 2, category: "Tecnologia",
-    image: "https://readdy.ai/api/search-image?query=modern technology gadgets minimalist desk clean lighting smartphones tablets&width=800&height=1000&seq=portfolio-02&orientation=portrait",
-    title: "Série Tech Reviews",
-    description: "Conteúdo viral sobre tecnologia com 10M+ visualizações e alta retenção de audiência.",
-    tags: ["YouTube", "TikTok", "Reviews"],
+    id: 2, category: "Audiovisual",
+    image: "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?w=800&q=80",
+    title: "Producao Audiovisual",
+    description: "Captacao e edicao profissional de videos que geraram mais de 1 milhao de visualizacoes.",
+    tags: ["Video", "Fotografia", "Edicao"],
   },
   {
-    id: 3, category: "Fitness & Wellness",
-    image: "https://readdy.ai/api/search-image?query=dynamic fitness lifestyle photography athletic wear bright modern gym minimalist&width=800&height=1000&seq=portfolio-03&orientation=portrait",
-    title: "Collab Fitness Brand",
-    description: "Parceria estratégica com marca fitness líder de mercado, gerando engajamento recorde.",
-    tags: ["Collab", "Fitness", "Sponsored"],
+    id: 3, category: "Performance",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    title: "Campanhas em Meta e Google",
+    description: "Gestao de midia paga com ROAS de 8x e reducao de 40% no custo por aquisicao.",
+    tags: ["Meta Ads", "Google Ads", "Performance"],
+  },
+  {
+    id: 4, category: "Cobertura em Tempo Real",
+    image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80",
+    title: "Stories em Tempo Real",
+    description: "Cobertura dos bastidores de evento corporativo com stories estrategicos e alta retencao.",
+    tags: ["Stories", "Instagram", "Ao Vivo"],
+  },
+  {
+    id: 5, category: "Branding Digital",
+    image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&q=80",
+    title: "Posicionamento de Marca",
+    description: "Construcao completa de identidade digital para startup com lancamento no digital.",
+    tags: ["Branding", "Conteudo", "Estrategia"],
+  },
+  {
+    id: 6, category: "Audiovisual",
+    image: "https://images.unsplash.com/photo-1542744094-3a31f272c490?w=800&q=80",
+    title: "Campanha Audiovisual",
+    description: "Serie de videos institucionais que definiram o posicionamento da marca no segmento.",
+    tags: ["Video", "Institucional", "Campanha"],
   },
 ];
 
@@ -72,7 +93,7 @@ export default function Portfolio() {
             </h2>
           </div>
           <p className="reveal" style={{ color: "#555", fontSize: "0.875rem", maxWidth: 260, lineHeight: 1.7 }}>
-            Conteúdo autêntico com resultados reais.
+            Conteudo autentico com resultados reais para marcas que querem crescer.
           </p>
         </div>
 
@@ -98,7 +119,6 @@ export default function Portfolio() {
                 background: "linear-gradient(to top, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.3) 50%, transparent 100%)",
               }} />
 
-              {/* Category */}
               <div style={{ position: "absolute", top: 18, left: 18, right: 18, display: "flex", justifyContent: "space-between" }}>
                 <span className="tag-badge" style={{ fontSize: "0.6rem" }}>{p.category}</span>
                 <div style={{
@@ -113,7 +133,6 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              {/* Content */}
               <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "24px 22px" }}>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10 }}>
                   {p.tags.map(t => (

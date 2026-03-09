@@ -1,5 +1,6 @@
-import Ela from "../../../assets/ela.png";
 import { useState, useEffect } from "react";
+
+const WA_URL = "https://wa.me/5527996687400?text=Ola!%20Quero%20mais%20informacoes%20sobre%20os%20servicos%20da%20Buzz%20Digital.";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -18,8 +19,8 @@ export function Navbar() {
 
   const links = [
     { label: "Sobre", id: "sobre" },
-    { label: "Serviços", id: "servicos" },
-    { label: "Portfólio", id: "portfolio" },
+    { label: "Servicos", id: "servicos" },
+    { label: "Portfolio", id: "portfolio" },
     { label: "Depoimentos", id: "depoimentos" },
   ];
 
@@ -31,91 +32,70 @@ export function Navbar() {
       backdropFilter: scrolled ? "blur(20px)" : "none",
       borderBottom: scrolled ? "1px solid rgba(255,255,255,0.05)" : "none",
     }}>
-      <div className="section-inner" style={{ paddingTop: 16, paddingBottom: 16 }}>
+      <div className="section-inner" style={{ paddingTop: 14, paddingBottom: 14 }}>
         <div className="flex-between">
-          {/* Logo */}
           <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <div style={{ position: "relative" }}>
-              <img src={Ela} alt="Yhasmin" style={{
-                width: 40, height: 40, borderRadius: "50%", objectFit: "cover",
-                border: "2px solid rgba(0,232,122,0.4)"
-              }} />
-              <span className="dot-pulse" style={{
-                position: "absolute", bottom: -2, right: -2,
-                width: 10, height: 10, borderRadius: "50%",
-                background: "#00e87a", border: "2px solid #080808"
-              }} />
+            style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{
+              width: 32, height: 32, borderRadius: 9,
+              background: "linear-gradient(135deg, #00e87a, #00d4ff)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}>
+              <i className="ri-flashlight-fill" style={{ color: "#000", fontSize: "0.9rem" }} />
             </div>
             <span style={{
               fontFamily: "Syne, sans-serif", fontWeight: 800,
-              fontSize: "1.1rem", color: "#fff", letterSpacing: "-0.01em"
+              fontSize: "1rem", color: "#fff", letterSpacing: "-0.01em"
             }}>
-              Yhasmin<span style={{ color: "#00e87a" }}>.</span>
+              Buzz<span style={{ color: "#00e87a" }}>.</span>Digital
             </span>
           </button>
 
-          {/* Desktop links */}
-          <div style={{ display: "flex", alignItems: "center", gap: 36 }}
-            className="hide-mobile">
+          <div style={{ display: "flex", alignItems: "center", gap: 32 }} className="hide-mobile">
             {links.map(l => (
               <button key={l.id} onClick={() => go(l.id)} style={{
-                fontSize: "0.85rem", fontWeight: 500,
-                color: "#888", transition: "color 0.25s",
+                fontSize: "0.82rem", fontWeight: 500,
+                color: "#666", transition: "color 0.25s",
               }}
                 onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-                onMouseLeave={e => (e.currentTarget.style.color = "#888")}
+                onMouseLeave={e => (e.currentTarget.style.color = "#666")}
               >{l.label}</button>
             ))}
           </div>
 
-          {/* Desktop CTA */}
-          <button onClick={() => go("contato")} className="btn-primary hide-mobile"
-            style={{ padding: "10px 22px", fontSize: "0.82rem" }}>
-            <i className="ri-whatsapp-line" style={{ fontSize: "1rem" }} />
-            Fale comigo
-          </button>
+          <a href={WA_URL} target="_blank" rel="noopener noreferrer"
+            className="btn-primary hide-mobile"
+            style={{ padding: "9px 20px", fontSize: "0.78rem" }}>
+            <i className="ri-whatsapp-line" style={{ fontSize: "0.9rem" }} />
+            Fale conosco
+          </a>
 
-          {/* Hamburger */}
           <button onClick={() => setOpen(!open)} className="show-mobile"
             style={{
-              width: 40, height: 40, borderRadius: "50%",
+              width: 38, height: 38, borderRadius: "50%",
               border: "1px solid rgba(255,255,255,0.1)",
               display: "flex", flexDirection: "column",
-              alignItems: "center", justifyContent: "center", gap: 5,
+              alignItems: "center", justifyContent: "center", gap: 4,
             }}>
-            <span style={{
-              width: 18, height: 1.5, background: "#fff", borderRadius: 2,
-              transition: "all 0.3s",
-              transform: open ? "rotate(45deg) translateY(6.5px)" : "none",
-            }} />
-            <span style={{
-              width: 18, height: 1.5, background: "#fff", borderRadius: 2,
-              transition: "all 0.3s",
-              opacity: open ? 0 : 1,
-            }} />
-            <span style={{
-              width: 18, height: 1.5, background: "#fff", borderRadius: 2,
-              transition: "all 0.3s",
-              transform: open ? "rotate(-45deg) translateY(-6.5px)" : "none",
-            }} />
+            <span style={{ width: 16, height: 1.5, background: "#fff", borderRadius: 2, transition: "all 0.3s", transform: open ? "rotate(45deg) translateY(5.5px)" : "none" }} />
+            <span style={{ width: 16, height: 1.5, background: "#fff", borderRadius: 2, transition: "all 0.3s", opacity: open ? 0 : 1 }} />
+            <span style={{ width: 16, height: 1.5, background: "#fff", borderRadius: 2, transition: "all 0.3s", transform: open ? "rotate(-45deg) translateY(-5.5px)" : "none" }} />
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
       {open && (
         <div className="menu-slide show-mobile" style={{
           background: "#0f0f0f",
           borderTop: "1px solid rgba(255,255,255,0.05)",
-          padding: "24px",
+          padding: "20px",
         }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             {links.map(l => (
               <button key={l.id} onClick={() => go(l.id)} style={{
-                textAlign: "left", padding: "16px 0",
+                textAlign: "left", padding: "14px 0",
                 fontFamily: "Syne, sans-serif", fontWeight: 700,
-                fontSize: "1.2rem", color: "#ccc",
+                fontSize: "1.1rem", color: "#ccc",
                 borderBottom: "1px solid rgba(255,255,255,0.05)",
                 transition: "color 0.2s",
               }}
@@ -123,11 +103,11 @@ export function Navbar() {
                 onMouseLeave={e => (e.currentTarget.style.color = "#ccc")}
               >{l.label}</button>
             ))}
-            <button onClick={() => go("contato")} className="btn-primary"
-              style={{ marginTop: 20, justifyContent: "center" }}>
+            <a href={WA_URL} target="_blank" rel="noopener noreferrer"
+              className="btn-primary" style={{ marginTop: 16, justifyContent: "center" }}>
               <i className="ri-whatsapp-line" />
-              Fale comigo
-            </button>
+              Fale conosco
+            </a>
           </div>
         </div>
       )}
