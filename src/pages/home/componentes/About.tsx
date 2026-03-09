@@ -43,7 +43,7 @@ export function About() {
                 <div className="text-sm text-gray-600 uppercase tracking-wide">Seguidores</div>
               </div>
               <div>
-                <div className="text-5xl font-bold text-emerald-700 mb-2">3Bi+</div>
+                <div className="text-5xl font-bold text-emerald-700 mb-2">3Mi+</div>
                 <div className="text-sm text-gray-600 uppercase tracking-wide">Visualizações</div>
               </div>
               <div>
