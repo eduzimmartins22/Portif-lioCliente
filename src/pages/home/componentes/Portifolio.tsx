@@ -1,106 +1,141 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Ela from "../../../assets/ela.png";
 
-type Project = {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-  image: string;
-};
+function useReveal(ref: React.RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting)
+          entry.target.querySelectorAll(".reveal,.reveal-scale")
+            .forEach((el, i) => setTimeout(() => el.classList.add("visible"), i * 90));
+      });
+    }, { threshold: 0.08 });
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+}
 
-const projects: Project[] = [
+const projects = [
   {
-    id: 1,
-    title: "Breno & Yhasmin - Casamento",
-    description:
-      "Fiz um Casamento, gravando e deixando as melhores postagens para nunca esquecer em seu instagram e demais redes sociais",
-    category: "Casamento",
-    image: Ela,
+    id: 1, category: "Casamento", image: Ela,
+    title: "Breno & Yhasmin — Casamento",
+    description: "Captei e curei os melhores momentos do casamento, criando posts e stories que eternizaram o dia especial nas redes sociais.",
+    tags: ["Instagram", "Stories", "Reels"],
   },
   {
-    id: 2,
+    id: 2, category: "Tecnologia",
+    image: "https://readdy.ai/api/search-image?query=modern technology gadgets minimalist desk clean lighting smartphones tablets&width=800&height=1000&seq=portfolio-02&orientation=portrait",
     title: "Série Tech Reviews",
-    description: "Conteúdo viral sobre tecnologia com 10M+ visualizações",
-    category: "Tecnologia",
-    image:
-      "https://readdy.ai/api/search-image?query=modern technology gadgets and devices arranged artistically on clean minimalist desk with soft lighting featuring smartphones tablets and tech accessories against simple neutral background perfect for tech review content and digital product showcase with contemporary professional aesthetic&width=800&height=1000&seq=portfolio-02&orientation=portrait",
+    description: "Conteúdo viral sobre tecnologia com 10M+ visualizações e alta retenção de audiência.",
+    tags: ["YouTube", "TikTok", "Reviews"],
   },
   {
-    id: 3,
+    id: 3, category: "Fitness & Wellness",
+    image: "https://readdy.ai/api/search-image?query=dynamic fitness lifestyle photography athletic wear bright modern gym minimalist&width=800&height=1000&seq=portfolio-03&orientation=portrait",
     title: "Collab Fitness Brand",
-    description:
-      "Parceria estratégica com marca fitness líder de mercado",
-    category: "Fitness & Wellness",
-    image:
-      "https://readdy.ai/api/search-image?query=dynamic fitness lifestyle photography featuring athletic wear and wellness products in bright modern gym environment with clean minimalist aesthetic and natural lighting showcasing healthy active lifestyle perfect for fitness brand collaboration and social media content&width=800&height=1000&seq=portfolio-03&orientation=portrait",
+    description: "Parceria estratégica com marca fitness líder de mercado, gerando engajamento recorde.",
+    tags: ["Collab", "Fitness", "Sponsored"],
   },
 ];
 
 export default function Portfolio() {
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [hovered, setHovered] = useState<number | null>(null);
   const navigate = useNavigate();
+  const ref = useRef<HTMLElement>(null);
+  useReveal(ref);
 
   return (
-    <section id="portfolio" className="py-32 px-8 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        
-        {/* Título */}
-        <div className="mb-16">
-          <h2 className="text-6xl font-extralight text-gray-900 mb-4 max-w-md">
-            Projetos em Destaque
-          </h2>
-          <p className="text-gray-600 text-base">
-            Alguns dos trabalhos que mais me orgulho
+    <section ref={ref} id="portfolio" style={{ padding: "96px 0", background: "#080808" }}>
+      <div className="section-inner">
+        <div className="divider" style={{ marginBottom: 48 }} />
+
+        <div style={{
+          display: "flex", flexWrap: "wrap",
+          justifyContent: "space-between", alignItems: "flex-end",
+          gap: 24, marginBottom: 48,
+        }}>
+          <div>
+            <div className="reveal" style={{ marginBottom: 20 }}>
+              <span className="tag-badge">
+                <span className="dot-pulse" style={{ width: 7, height: 7, borderRadius: "50%", background: "#00e87a", display: "inline-block" }} />
+                Trabalhos
+              </span>
+            </div>
+            <h2 className="reveal" style={{
+              fontFamily: "Syne, sans-serif", fontWeight: 900,
+              fontSize: "clamp(2rem, 5vw, 3.8rem)",
+              lineHeight: 1.05, letterSpacing: "-0.02em", color: "#fff",
+            }}>
+              Projetos em<br />
+              <span style={{ color: "#333" }}>Destaque</span>
+            </h2>
+          </div>
+          <p className="reveal" style={{ color: "#555", fontSize: "0.875rem", maxWidth: 260, lineHeight: 1.7 }}>
+            Conteúdo autêntico com resultados reais.
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              onClick={() => navigate(`/projeto/${project.id}`)}
-              onMouseEnter={() => setHoveredId(project.id)}
-              onMouseLeave={() => setHoveredId(null)}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-105"
-              style={{ aspectRatio: "3/4" }}
-            >
-              {/* Imagem */}
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover"
-              />
+        <div className="portfolio-grid">
+          {projects.map((p, i) => (
+            <div key={p.id} className="reveal-scale"
+              onClick={() => navigate(`/projeto/${p.id}`)}
+              onMouseEnter={() => setHovered(p.id)}
+              onMouseLeave={() => setHovered(null)}
+              style={{
+                position: "relative", borderRadius: 18,
+                overflow: "hidden", cursor: "pointer",
+                aspectRatio: "3/4",
+                animationDelay: `${i * 100}ms`,
+              }}>
+              <img src={p.image} alt={p.title} style={{
+                width: "100%", height: "100%", objectFit: "cover",
+                transition: "transform 0.6s cubic-bezier(.16,1,.3,1)",
+                transform: hovered === p.id ? "scale(1.06)" : "scale(1)",
+              }} />
+              <div style={{
+                position: "absolute", inset: 0,
+                background: "linear-gradient(to top, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.3) 50%, transparent 100%)",
+              }} />
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-              {/* Conteúdo */}
-              <div
-                className={`absolute inset-0 p-8 flex flex-col justify-between transition-all duration-300 ${
-                  hoveredId === project.id
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-4"
-                }`}
-              >
-                <div>
-                  <span className="px-4 py-2 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-medium">
-                    {project.category}
-                  </span>
-                </div>
-
-                <div className="space-y-2">
-                  <h3 className="text-2xl font-semibold text-white">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-white/90 font-light">
-                    {project.description}
-                  </p>
+              {/* Category */}
+              <div style={{ position: "absolute", top: 18, left: 18, right: 18, display: "flex", justifyContent: "space-between" }}>
+                <span className="tag-badge" style={{ fontSize: "0.6rem" }}>{p.category}</span>
+                <div style={{
+                  width: 32, height: 32, borderRadius: "50%",
+                  background: "rgba(255,255,255,0.1)", backdropFilter: "blur(8px)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  opacity: hovered === p.id ? 1 : 0,
+                  transform: hovered === p.id ? "scale(1)" : "scale(0.7)",
+                  transition: "all 0.3s",
+                }}>
+                  <i className="ri-external-link-line" style={{ color: "#fff", fontSize: "0.85rem" }} />
                 </div>
               </div>
 
+              {/* Content */}
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "24px 22px" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10 }}>
+                  {p.tags.map(t => (
+                    <span key={t} style={{
+                      fontSize: "0.65rem", color: "#888",
+                      background: "rgba(255,255,255,0.06)",
+                      padding: "2px 8px", borderRadius: 999,
+                    }}>{t}</span>
+                  ))}
+                </div>
+                <h3 style={{
+                  fontFamily: "Syne, sans-serif", fontWeight: 900,
+                  fontSize: "1.1rem", color: "#fff", lineHeight: 1.2, marginBottom: 8,
+                }}>{p.title}</h3>
+                <p style={{
+                  fontSize: "0.8rem", color: "#888", lineHeight: 1.6,
+                  maxHeight: hovered === p.id ? 80 : 0,
+                  opacity: hovered === p.id ? 1 : 0,
+                  overflow: "hidden",
+                  transition: "all 0.35s cubic-bezier(.16,1,.3,1)",
+                }}>{p.description}</p>
+              </div>
             </div>
           ))}
         </div>
