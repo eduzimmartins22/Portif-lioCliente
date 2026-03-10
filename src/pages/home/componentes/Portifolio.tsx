@@ -20,42 +20,42 @@ const projects = [
     id: 1, category: "Conteudo Estrategico",
     image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&q=80",
     title: "Gestao de Redes Sociais",
-    description: "Estrategia completa de conteudo para marca de moda com crescimento de 300% em engajamento.",
+    description: "Estrategia completa de conteudo com crescimento de 300% em engajamento.",
     tags: ["Instagram", "TikTok", "Reels"],
   },
   {
     id: 2, category: "Audiovisual",
     image: "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?w=800&q=80",
     title: "Producao Audiovisual",
-    description: "Captacao e edicao profissional de videos que geraram mais de 1 milhao de visualizacoes.",
+    description: "Videos profissionais com mais de 1 milhao de visualizacoes.",
     tags: ["Video", "Fotografia", "Edicao"],
   },
   {
     id: 3, category: "Performance",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-    title: "Campanhas em Meta e Google",
-    description: "Gestao de midia paga com ROAS de 8x e reducao de 40% no custo por aquisicao.",
+    title: "Campanhas Meta e Google",
+    description: "Gestao de midia paga com ROAS de 8x e -40% no custo por aquisicao.",
     tags: ["Meta Ads", "Google Ads", "Performance"],
   },
   {
-    id: 4, category: "Cobertura em Tempo Real",
+    id: 4, category: "Stories em Tempo Real",
     image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80",
-    title: "Stories em Tempo Real",
-    description: "Cobertura dos bastidores de evento corporativo com stories estrategicos e alta retencao.",
+    title: "Cobertura de Eventos",
+    description: "Stories estrategicos de evento corporativo com alta retencao.",
     tags: ["Stories", "Instagram", "Ao Vivo"],
   },
   {
     id: 5, category: "Branding Digital",
     image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&q=80",
     title: "Posicionamento de Marca",
-    description: "Construcao completa de identidade digital para startup com lancamento no digital.",
+    description: "Construcao completa de identidade digital para startup.",
     tags: ["Branding", "Conteudo", "Estrategia"],
   },
   {
     id: 6, category: "Audiovisual",
     image: "https://images.unsplash.com/photo-1542744094-3a31f272c490?w=800&q=80",
-    title: "Campanha Audiovisual",
-    description: "Serie de videos institucionais que definiram o posicionamento da marca no segmento.",
+    title: "Campanha Institucional",
+    description: "Serie de videos que definiram o posicionamento da marca.",
     tags: ["Video", "Institucional", "Campanha"],
   },
 ];
@@ -67,33 +67,28 @@ export default function Portfolio() {
   useReveal(ref);
 
   return (
-    <section ref={ref} id="portfolio" style={{ padding: "96px 0", background: "#080808" }}>
+    <section ref={ref} id="portfolio" className="section-pad" style={{ padding: "64px 0", background: "#080808" }}>
       <div className="section-inner">
-        <div className="divider" style={{ marginBottom: 48 }} />
+        <div className="divider" style={{ marginBottom: 36 }} />
 
-        <div style={{
-          display: "flex", flexWrap: "wrap",
-          justifyContent: "space-between", alignItems: "flex-end",
-          gap: 24, marginBottom: 48,
-        }}>
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 16, marginBottom: 36 }}>
           <div>
-            <div className="reveal" style={{ marginBottom: 20 }}>
+            <div className="reveal" style={{ marginBottom: 14 }}>
               <span className="tag-badge">
-                <span className="dot-pulse" style={{ width: 7, height: 7, borderRadius: "50%", background: "#00e87a", display: "inline-block" }} />
+                <span className="dot-pulse" style={{ width: 6, height: 6, borderRadius: "50%", background: "#00e87a", display: "inline-block" }} />
                 Trabalhos
               </span>
             </div>
             <h2 className="reveal" style={{
               fontFamily: "Syne, sans-serif", fontWeight: 900,
-              fontSize: "clamp(2rem, 5vw, 3.8rem)",
-              lineHeight: 1.05, letterSpacing: "-0.02em", color: "#fff",
+              fontSize: "clamp(1.4rem, 3.5vw, 2.6rem)",
+              lineHeight: 1.1, letterSpacing: "-0.02em", color: "#fff",
             }}>
-              Projetos em<br />
-              <span style={{ color: "#333" }}>Destaque</span>
+              Projetos em<br /><span style={{ color: "#333" }}>Destaque</span>
             </h2>
           </div>
-          <p className="reveal" style={{ color: "#555", fontSize: "0.875rem", maxWidth: 260, lineHeight: 1.7 }}>
-            Conteudo autentico com resultados reais para marcas que querem crescer.
+          <p className="reveal" style={{ color: "#444", fontSize: "0.78rem", maxWidth: 220, lineHeight: 1.65 }}>
+            Conteudo autentico com resultados reais.
           </p>
         </div>
 
@@ -104,7 +99,7 @@ export default function Portfolio() {
               onMouseEnter={() => setHovered(p.id)}
               onMouseLeave={() => setHovered(null)}
               style={{
-                position: "relative", borderRadius: 18,
+                position: "relative", borderRadius: 14,
                 overflow: "hidden", cursor: "pointer",
                 aspectRatio: "3/4",
                 animationDelay: `${i * 100}ms`,
@@ -114,42 +109,22 @@ export default function Portfolio() {
                 transition: "transform 0.6s cubic-bezier(.16,1,.3,1)",
                 transform: hovered === p.id ? "scale(1.06)" : "scale(1)",
               }} />
-              <div style={{
-                position: "absolute", inset: 0,
-                background: "linear-gradient(to top, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.3) 50%, transparent 100%)",
-              }} />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.3) 50%, transparent 100%)" }} />
 
-              <div style={{ position: "absolute", top: 18, left: 18, right: 18, display: "flex", justifyContent: "space-between" }}>
-                <span className="tag-badge" style={{ fontSize: "0.6rem" }}>{p.category}</span>
-                <div style={{
-                  width: 32, height: 32, borderRadius: "50%",
-                  background: "rgba(255,255,255,0.1)", backdropFilter: "blur(8px)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  opacity: hovered === p.id ? 1 : 0,
-                  transform: hovered === p.id ? "scale(1)" : "scale(0.7)",
-                  transition: "all 0.3s",
-                }}>
-                  <i className="ri-external-link-line" style={{ color: "#fff", fontSize: "0.85rem" }} />
-                </div>
+              <div style={{ position: "absolute", top: 14, left: 14, right: 14, display: "flex", justifyContent: "space-between" }}>
+                <span className="tag-badge" style={{ fontSize: "0.58rem" }}>{p.category}</span>
               </div>
 
-              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "24px 22px" }}>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10 }}>
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "18px 16px" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginBottom: 8 }}>
                   {p.tags.map(t => (
-                    <span key={t} style={{
-                      fontSize: "0.65rem", color: "#888",
-                      background: "rgba(255,255,255,0.06)",
-                      padding: "2px 8px", borderRadius: 999,
-                    }}>{t}</span>
+                    <span key={t} style={{ fontSize: "0.6rem", color: "#777", background: "rgba(255,255,255,0.06)", padding: "2px 7px", borderRadius: 999 }}>{t}</span>
                   ))}
                 </div>
-                <h3 style={{
-                  fontFamily: "Syne, sans-serif", fontWeight: 900,
-                  fontSize: "1.1rem", color: "#fff", lineHeight: 1.2, marginBottom: 8,
-                }}>{p.title}</h3>
+                <h3 style={{ fontFamily: "Syne, sans-serif", fontWeight: 900, fontSize: "0.95rem", color: "#fff", lineHeight: 1.2, marginBottom: 6 }}>{p.title}</h3>
                 <p style={{
-                  fontSize: "0.8rem", color: "#888", lineHeight: 1.6,
-                  maxHeight: hovered === p.id ? 80 : 0,
+                  fontSize: "0.75rem", color: "#777", lineHeight: 1.6,
+                  maxHeight: hovered === p.id ? 60 : 0,
                   opacity: hovered === p.id ? 1 : 0,
                   overflow: "hidden",
                   transition: "all 0.35s cubic-bezier(.16,1,.3,1)",

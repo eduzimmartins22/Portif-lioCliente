@@ -47,7 +47,7 @@ export function Navbar() {
               fontFamily: "Syne, sans-serif", fontWeight: 800,
               fontSize: "1rem", color: "#fff", letterSpacing: "-0.01em"
             }}>
-              Buzz<span style={{ color: "#00e87a" }}>.</span>Digital
+              Buzz<span style={{ color: "#00e87a" }}></span> 
             </span>
           </button>
 

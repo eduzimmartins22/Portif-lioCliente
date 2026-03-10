@@ -264,3 +264,52 @@ img { display: block; max-width: 100%; }
 /* ── Flex gap helpers ── */
 .flex-center { display: flex; align-items: center; justify-content: center; }
 .flex-between { display: flex; align-items: center; justify-content: space-between; }
+
+/* ── Mobile responsive fixes ── */
+@media (max-width: 767px) {
+  /* Services card: stack on mobile */
+  .service-card-inner {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+  .service-card-left {
+    min-width: unset !important;
+    width: 100% !important;
+  }
+
+  /* Stats grid: 2 cols on mobile */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* About section: reduce padding */
+  .about-section { padding: 48px 0 !important; }
+
+  /* Section padding mobile */
+  .section-pad { padding: 48px 0 !important; }
+
+  /* Hero padding top */
+  .hero-content { padding-top: 100px !important; }
+
+  /* Two-col gap */
+  .two-col { gap: 32px !important; }
+
+  /* Portfolio aspect ratio mobile */
+  .portfolio-grid .reveal-scale { aspect-ratio: 4/3 !important; }
+
+  /* Contact info items */
+  .contact-info { gap: 10px !important; }
+
+  /* Footer flex */
+  .footer-bar { flex-direction: column !important; align-items: flex-start !important; }
+
+  /* Buttons full width on small screens */
+  .hero-btns { flex-direction: column !important; align-items: center !important; }
+  .hero-btns a, .hero-btns button { width: 100% !important; justify-content: center !important; }
+
+  /* Testimonial controls */
+  .testimonial-controls { margin-top: 24px !important; }
+
+  /* Overflow fix */
+  section, footer { overflow-x: hidden !important; }
+}
